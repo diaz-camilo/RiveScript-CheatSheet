@@ -1,0 +1,8 @@
++ expected input
+- output
+^ line continuation (doesn't imply new line)
+\n new line
+// in-line comment
+! local concat = newline | space | none -> sets the ^ mode
+! sub i'm = i am -> substitute i'm for i am before the RiveScript interpreter reads it
+! var -> declares a variable
