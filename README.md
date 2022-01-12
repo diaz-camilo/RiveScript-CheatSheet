@@ -103,13 +103,64 @@ For example:
 
     < begin
 
+## Object Macros
 
+`> object name language` Opens an onbject block. `language` can be pearl, Javascript, Python.
+
+`args` the arguments array
+
+`< object` Close object block.
+
+    > object logical_OR javascript
+
+        let result = false;
+        const var1 = args[0];
+        const var2 = args[1];
+
+        if (var1 == "true" || var2 == "true"){
+            result = true;
+        }
+        return result;
+
+    < object
+
+### Implementation example:
+
+    ! version = 2.0
+
+    > object find_final_bool javascript
+
+        let result = false;
+        const variable1 = args[0];
+        const variable2 = args[1];
+
+        if (variable1 == "true" || variable2 == "true"){
+            result = true;
+        }
+        return result;
+
+    < object
+
+    + _ _
+    * <call> find_final_bool <star1> <star2> </call> == true => <set final_bool=true>awesome {topic=random}
+    - Failed 
+
+    + *
+    - Invalid input, try only two values.
+
+## Globals
+
+`! global debug = true | false` sets the debug mode
+
+`! global depth = 50` sets the max number of redirects without a replay, to avoid infinite recursion.
+
+## Person
+
+`! person i am = you are` a susbtitution rule use for swapping first and second person pronouns
 
 ## Tags {...} {/...}
 
-`{formal} {/formal}`
-
-`{random} {/random}`
+`{formal} {/formal}` or `<formal>`
 
 `{sentence} {/sentence}`
 
@@ -117,4 +168,41 @@ For example:
 
 `{lowercase} {/lowercase}`
 
+`{person} {/person}` or `<person>`
+
+`{topic=...}` Change the topic
+
+`{weight=###}` in trigger, sets the matching priority. In reply, sets the reply's likelyhood of appearing.
+
+`{@ ...} , <@>` redirects to a different trigger
+
+`{random} ... {/random}` chose a random value
+
 `{} {/}`
+
+`<star>, <star1> - <starN>` references a `*` in the trigger.
+
+`<botstar>, <botstar1> - <botstarN>` references a `*` in the bot's response.
+
+    + i bought a new *
+    - Oh? What color is your new <star>?
+
+    + (@colors)
+    % oh what color is your new *
+    - <star> is a pretty color for a <botstar>.
+
+`<input>, <input1> - <input9>` retrieves the previous 9 user inputs.
+
+`<reply>, <reply1> - <reply9>` retrieves the previous 9 bot replys.
+
+`<id>` user id as set by or passed to the RiveScript interpreter.
+
+`<bot>` used to set or get a bot variable.
+
+`<env>` used to set or get global variables.
+
+`<get> , <set>` used to set or get user variables.
+
+
+
+
