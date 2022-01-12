@@ -1,5 +1,3 @@
-# RiveScript-CheatSheet
-
 `!` definition
 
 `+` trigger, expected input
